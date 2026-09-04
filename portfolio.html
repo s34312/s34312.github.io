@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta viewport="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แฟ้มสะสมงานของฉัน </title>
     <style>
         body { font-family: sans-serif; background-color: #f4f7f6; text-align: center;
@@ -53,14 +53,14 @@ padding: 30px; }
 <body>
 
      <div class="tab-menu">
-        <a href="#page1"><button class="tab-btn">ข้อมูลส่วนตัว</button></a>
-        <a href="#page2"><button class="tab-btn">ความใฝ่ฝัน</button></a>
-        <a href="#page3"><button class="tab-btn">ส่วนแสดงผลงาน</button></a>
-        <a href="#page4"><button class="tab-btn">ติดต่อ</button></a>
+        <a href="#page1"><button class="tab-btn">ข้อมูลส่วนตัว</button>
+        <a href="#page2"><button class="tab-btn">ความใฝ่ฝัน</button>
+        <a href="#page3"><button class="tab-btn">ส่วนแสดงผลงาน</button>
+        <a href="#page4"><button class="tab-btn">ติดต่อ</button>
      </div>
 
      <!-- หน้าที่ 1 -->
-     <div id="page1" class="container">
+     <div id="page1" class="container tab-page">
         <h1>ข้อมูลส่วนตัว</h1>
         <p>นี่คือข้อมูลส่วนตัวของผมครับ</p>
 
@@ -109,7 +109,7 @@ padding: 30px; }
 </div>
 
      <!-- หน้าที่ 2 -->
-     <div id="page2" class="container">
+     <div id="page2" class="container tab-page">
         <h1>ความใฝ่ฝัน</h1>
         <p>นี่คือความใฝ่ฝันของผมครับ</p>
 
@@ -138,7 +138,7 @@ padding: 30px; }
     <!-- 3. โค้ด JavaScript ควบคุมการเปิด-ปิดหน้า -->
     <script>
         function openPage(pageId, elmnt) {
-            var contents = document.getElementsByClassName("tab-content");
+            var contents = document.getElementsByClassName("tab-page");
             for (var i = 0; i < contents.length; i++) {
                 contents[i].style.display = "none";
             }
