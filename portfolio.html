@@ -12,29 +12,123 @@ padding: 30px; }
 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
         .btn { display: inline-block; background: #11FF00; color: white; padding: 10px
 20px; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+        .tab-menu {
+            display: flex;
+            gap: 10px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            background-color: #ddd;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .tab-btn:hover {
+            background-color: #bbb;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+        .tab-content:target {
+            display: block;
+        }
+        #page1 {
+            display: block;
+        }
+        :has(#page2:target, #page3:target, #page4:target) #page1 {
+            display: none;
+        }
      </style>
 </head>
 <body>
 
-     <div class="container">
-        <h1> แฟมสะสมงาน (Portfolio)</h1>
-        <p>นี่คือพื้นที่รวบรวมผลงานและกิจกรรมที่ภูมิใจครับ</p>
+     <div class="tab-menu">
+        <a href="#page1"><button class="tab-btn">ข้อมูลส่วนตัว</button></a>
+        <a href="#page2"><button class="tab-btn">ความใฝ่ฝัน</button></a>
+        <a href="#page3"><button class="tab-btn">ส่วนแสดงผลงาน</button></a>
+        <a href="#page4"><button class="tab-btn">ติดต่อ</button></a>
+     </div>
 
-        <!-- กล่องผลงานชิ้นที่ 1 -->
+     <!-- หน้าที่ 1 -->
+     <div id="page1" class="container">
+        <h1>ข้อมูลส่วนตัว</h1>
+        <p>นี่คือข้อมูลส่วนตัวของผมครับ</p>
+
+        <!-- กล่องประวัติส่วนตัว -->
         <div class="project-card">
-            <h3>1. โครงงานเรื่อง ผลิตภัณฑ์กำจัดคราบแบบสติ๊ก </h3>
-            <p>รายละเอียดชิ้นงาน : เป็นผลิตภัณฑ์แบบสติ๊กที่ประดิษฐ์ขึ้นมาเพื่อช่วยกำจัดคราบออกจากเสื้อผ้า ความรู้ที่ได้รับคือการทำผลิตภัณฑ์กำจัดคราบใช้เองโดยใช้วัสดุอุปกรณ์ในบ้านที่มีอยู่</p>
+            <h3>ประวัติส่วนตัว</h3>
+            <ul>
+                <li>ชื่อจริง: อิทธิพัทธ์ แจ่มจำรัส</li>
+                <li>ชื่อเล่น: อุลตร้า</li>
+                <li>เกิดวันที่: 7 กันยายน 2551</li>
+                <li>น้ำหนัก: 49 กิโลกรัม</li>
+                <li>ส่วนสูง: 161 เซนติเมตร</li>
+                <li>สีที่ชอบ: สีเขียว</li>
+                <li>ชั้น: มัธยมศึกษาปีที่ 6/3</li>
+                <li>แผนการเรียน: </li>
+                <li>วิชาที่ชอบ: ประวัติศาสตร์</li>
+                <li>สถานศึกษา: โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</li>
+            </ul>
         </div>
 
-        <!-- กล่องผลงานชิ้นที่ 2 -->
+        <!-- กล่องงานอดิเรก -->
         <div class="project-card">
-             <h3>2. เกียรติบัตร Dek D's TCAS Fair</h3>
-             <p>รายละเอียดชิ้นงาน : เข้าร่วมกิจกรรมที่รอบรวมคณะต่าง ๆ จากแต่ละมหาวิทยาลัยมาไว้ในสถานที่เดียว โดยกิจกรรมจะให้ความรู้และหลักเกณฑ์ในการเข้าศึกษาต่อในระดับอุดมศึกษา</p>
+            <h3>งานอดิเรก</h3>
+            <ul>
+                <li>ฟัง Podcast</li>
+                <li>ฟังเพลง</li>
+                <li>วาดรูป</li>
+                <li>เล่นเกมส์</li>
+                <li>สะสมธงนานาชาติ</li>
+            </ul>
+        </div>
+
+        <!-- กล่องทักษะ -->
+        <div class="project-card">
+            <h3>ทักษะ</h3>
+            <ul>
+                <li>ใช้ภาษาอังกฤษได้คล่องในระดับหนึ่ง</li>
+                <li>ออกแบบกราฟิกได้เล็กน้อย</li>
+                <li>สามารถตัดต่อคลิปวิดีโอได้คล่องในระดับหนึ่ง</li>
+                <li>สามารถพูดภาษาจีนและภาษาสเปนได้ในระดับเล็กน้อย</li>
+            </ul>
         </div>
 
         <!-- ปุ่มกดกลับหน้าแรก -->
         <a href="index.html" class="btn"> กลับหน้าแรก</a>
-    </div>
+     </div>
+
+     <!-- หน้าที่ 2 -->
+     <div id="page2" class="container">
+        <h1>ความใฝ่ฝัน</h1>
+        <p>นี่คือความใฝ่ฝันของผมครับ</p>
+
+        <!-- กล่องประวัติส่วนตัว -->
+        <div class="project-card">
+            <h3>ความใฝ่ฝัน</h3>
+            <ul>
+                <li>สอบติดมหาวิทยาลัย คณะ และสาขาที่ต้องการ</li>
+                <li>อยากมีอาชีพที่มั่นคง</li>
+                <li>อยากประสบความสำเร็จในชีวิต</li>
+                <li>ได้ประกอบอาชีพที่สนใจ</li>
+                <li>ส่วนสูง: 161 เซนติเมตร</li>
+                <li>สีที่ชอบ: สีเขียว</li>
+                <li>ชั้น: มัธยมศึกษาปีที่ 6/3</li>
+                <li>แผนการเรียน: </li>
+                <li>วิชาที่ชอบ: ประวัติศาสตร์</li>
+                <li>สถานศึกษา: โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</li>
+            </ul>
+        </div>
 
 </body>
 </html>
