@@ -135,5 +135,25 @@ padding: 30px; }
         <a href="index.html" class="btn"> กลับหน้าแรก</a>
 </div>
 
+    <!-- 3. โค้ด JavaScript ควบคุมการเปิด-ปิดหน้า -->
+    <script>
+        function openPage(pageId, elmnt) {
+            // 1. ซ่อนเนื้อหาของทุกหน้าก่อน
+            var contents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = "none";
+            }
+
+            var buttons = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(pageId).style.display = "block";
+
+            elmnt.classList.add("active");
+        }
+    </script>
+
 </body>
 </html>
