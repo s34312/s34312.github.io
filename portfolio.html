@@ -20,6 +20,7 @@ padding: 30px; }
             border-radius: 8px;
         }
         .tab-btn {
+            flex: 1;
             padding: 10px 20px;
             background-color: #ddd;
             border: none;
@@ -32,16 +33,14 @@ padding: 30px; }
         .tab-btn:hover {
             background-color: #bbb;
         }
-        .tab-content {
+        .tab-btn.active {
+            background-color: #11FF00;
+            color: white;
+        }
+
+        .tab-page {
             display: none;
-            padding: 20px;
-            border: 1px solid #ddd;
-            margin-top: 15px;
-            border-radius: 8px;
-        }
-        .tab-content:target {
-            display: block;
-        }
+
         #page1 {
             display: block;
         }
@@ -53,10 +52,10 @@ padding: 30px; }
 <body>
 
      <div class="tab-menu">
-        <a href="#page1"><button class="tab-btn">ข้อมูลส่วนตัว</button>
-        <a href="#page2"><button class="tab-btn">ความใฝ่ฝัน</button>
-        <a href="#page3"><button class="tab-btn">ส่วนแสดงผลงาน</button>
-        <a href="#page4"><button class="tab-btn">ติดต่อ</button>
+        <button class="tab-btn active" onclick="openPage('page1', this)">ข้อมูลส่วนตัว</button>
+        <button class="tab-btn" onclick="openPage('page2', this)">ความใฝ่ฝัน</button>
+        <button class="tab-btn" onclick="openPage('page3', this)">ส่วนแสดงผลงาน</button>
+        <button class="tab-btn" onclick="openPage('page4', this)">ติดต่อ</button>
      </div>
 
      <!-- หน้าที่ 1 -->
@@ -106,7 +105,7 @@ padding: 30px; }
 
         <!-- ปุ่มกดกลับหน้าแรก -->
         <a href="index.html" class="btn"> กลับหน้าแรก</a>
-</div>
+     </div>
 
      <!-- หน้าที่ 2 -->
      <div id="page2" class="container tab-page">
@@ -133,7 +132,7 @@ padding: 30px; }
 
         <!-- ปุ่มกดกลับหน้าแรก -->
         <a href="index.html" class="btn"> กลับหน้าแรก</a>
-</div>
+     </div>
 
     <!-- 3. โค้ด JavaScript ควบคุมการเปิด-ปิดหน้า -->
     <script>
