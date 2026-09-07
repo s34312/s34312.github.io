@@ -6,25 +6,58 @@
   <title>หน้าแนะนำตัวของฉัน</title>
   <style>
       body {
-         background-color: #11FF00; color: #333;
-         text-align: center; padding: 50px;
+         font-family: sans-serif;
+         background-color: #11FF00; 
+         color: #333;
+         text-align: center; 
+         padding: 50px;
       }
       .card {
-          background: white; border-radius: 50px;
+          background: white; 
+          border-radius: 50px;
           box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-          max-width: 500px; margin: 0 auto; padding: 30px;
+          max-width: 500px; 
+          margin: 0 auto; 
+          padding: 30px;
       }
-      .btn { display: inline-block; background: #FF8C00; color: white; padding: 10px
-20px; text-decoration: none; border-radius: 10px; margin-top: 20px; }
-          h1 { color: #2c3e50; }
-          p { font-size: 18px; line-height: 1.6; }
+      .btn { 
+          display: inline-block; 
+          background: #FF8C00; 
+          color: white; 
+          padding: 10px 20px; 
+          text-decoration: none; 
+          border-radius: 10px; 
+          margin-top: 20px; 
+      }
+      .btn:visited {
+          color: white;
+      }
+      h1 { color: #2c3e50; }
+      p { font-size: 18px; line-height: 1.6; }
+
+      .profile-effect {
+          width: 200px;
+          height: 200px;
+          border-radius: 50% !important;
+          object-fit: cover;
+          border: 5px solid #11FF00;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          transition: all 0.3s ease-in-out;
+      }
+
+      .profile-effect:hover {
+          transform: scale(1.08);
+          border-color: #FF8C00;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+          cursor: pointer;
+      }
    </style>
 </head>
 <body>
   <div class="card">
       <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน </h1>
-      <img src="113596.jpg" width="200" height="200" class="profile-effect" alt="Profile"; object-fit: cover;>
-      <p>สวัสดีครับ! ผมชื่อ <strong>อิทธิพัทธ์ แจ่มจำรัส (Itthipat Jamjumras)</strong></p>
+      <img src="113596.jpg" class="profile-effect" alt="Profile">
+      <p>สวัสดีครับ! ผมชื่อ <strong>อิทธิพัทธ์ แจ่มจำรัส (Itthipat Jamjumras)</strong> ชั้น ม.6/3 เลขที่ 7</p>
       <p>ขณะนี้กำลังศึกษาอยู่สายการเรียน MSEP สนใจด้านรัฐศาสตร์และนิติศาสตร์</p>
       <p>นี่คือเว็บไซต์แรกของผมที่โฮสต์บน GitHub Pages!</p>
   </div>
