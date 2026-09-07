@@ -10,7 +10,7 @@
           margin: 0;
           padding: 60px 20px;
           text-align: center; 
-          background-color: #010206;
+          background-color: #010206; 
           position: relative;
           overflow-x: hidden;
           min-height: 100vh;
@@ -24,13 +24,59 @@
       .space-aurora {
           position: fixed;
           inset: 0;
-          z-index: -5;
+          z-index: -6;
           background: 
-              radial-gradient(circle at 20% 30%, rgba(122, 0, 255, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 10% 20%, rgba(122, 0, 255, 0.15) 0%, transparent 50%),
               radial-gradient(circle at 80% 60%, rgba(0, 255, 204, 0.12) 0%, transparent 45%),
               radial-gradient(circle at 40% 80%, rgba(255, 0, 110, 0.08) 0%, transparent 40%);
           filter: blur(60px);
           animation: auroraShift 20s ease-in-out infinite alternate;
+      }
+
+      .giant-planet-container {
+          position: fixed;
+          top: -20px;
+          right: -50px;
+          width: 280px;
+          height: 280px;
+          z-index: -5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transform: rotate(-15deg);
+          animation: planetFloat 8s ease-in-out infinite alternate;
+          pointer-events: none;
+      }
+
+      .planet-body {
+          position: absolute;
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          background: radial-gradient(circle at 30% 30%, #00ffcc 0%, #053a47 60%, #01040a 100%);
+          box-shadow: 0 0 40px rgba(0, 255, 204, 0.4), inset -10px -10px 30px rgba(0,0,0,0.8);
+          z-index: 2;
+      }
+
+      .planet-ring {
+          position: absolute;
+          width: 260px;
+          height: 40px;
+          border: 12px solid #ff0066;
+          border-radius: 50%;
+          transform: rotate(-20deg);
+          box-shadow: 0 0 25px rgba(255, 0, 102, 0.6), inset 0 0 25px rgba(255, 0, 102, 0.6);
+          z-index: 3;
+      }
+
+      .planet-ring-back-shadow {
+          position: absolute;
+          width: 260px;
+          height: 40px;
+          border: 12px solid #ff0066;
+          border-radius: 50%;
+          transform: rotate(-20deg);
+          z-index: 1;
       }
 
       #star-container {
@@ -88,6 +134,10 @@
           animation: scanMovement 10s linear infinite;
       }
 
+      @keyframes planetFloat {
+          0% { transform: translateY(0px) rotate(-15deg); }
+          100% { transform: translateY(15px) rotate(-12deg); }
+      }
       @keyframes auroraShift {
           0% { transform: scale(1) translate(0px, 0px); }
           100% { transform: scale(1.2) translate(30px, -20px); }
