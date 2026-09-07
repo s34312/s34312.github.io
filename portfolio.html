@@ -5,71 +5,245 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แฟ้มสะสมงานของฉัน</title>
     <style>
-        body { 
-            font-family: sans-serif; 
-            background-color: #f4f7f6; 
-            text-align: center;
-            padding: 30px; 
-        }
-        .container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-        }
-        .project-card { 
-            background: white; 
-            padding: 20px; 
-            margin: 20px 0; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-            text-align: left; 
-        }
-        .btn { 
-            display: inline-block; 
-            background: #11FF00; 
-            color: white; 
-            padding: 10px 20px; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            margin-top: 20px; 
-        }
-        .tab-menu {
-            display: flex;
-            gap: 10px;
-            background-color: #f1f1f1;
-            padding: 10px;
-            border-radius: 8px;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 10px 20px;
-            background-color: #ddd;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .tab-btn:hover {
-            background-color: #bbb;
-        }
-        .tab-btn.active {
-            background-color: #11FF00;
-            color: white;
-        }
+      body { 
+          font-family: sans-serif; 
+          margin: 0;
+          padding: 40px 20px;
+          text-align: center; 
+          background: linear-gradient(to bottom, #ffbe94 0%, #ffe3d1 30%, #bde0fe 70%, #a2d2ff 100%);
+          position: relative;
+          overflow-x: hidden;
+          min-height: 100vh;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
 
+      .anime-sun {
+          position: fixed;
+          top: 30px;
+          right: 40px;
+          width: 90px;
+          height: 90px;
+          background: radial-gradient(circle at 30% 30%, #fff 20%, #ffebd9 50%, #ffb38a 100%);
+          border-radius: 50%;
+          box-shadow: 0 0 50px rgba(255, 179, 138, 0.8), 0 0 100px rgba(255, 255, 255, 0.4);
+          z-index: -4;
+          animation: sunPulse 6s ease-in-out infinite alternate;
+          pointer-events: none;
+      }
 
-        .tab-page {
-            display: none; 
-        }
-        #page1 {
-            display: block;
-        }
+      .scenery-layer {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 350px;
+          z-index: -3;
+          pointer-events: none;
+      }
+      .mountain-back {
+          position: absolute;
+          bottom: 60px;
+          left: -10%;
+          width: 60%;
+          height: 200px;
+          background: #7ca8ab;
+          clip-path: polygon(0% 100%, 30% 20%, 65% 60%, 85% 30%, 100% 100%);
+          opacity: 0.7;
+      }
+      .mountain-front {
+          position: absolute;
+          bottom: 40px;
+          right: -5%;
+          width: 55%;
+          height: 240px;
+          background: #5a8f76;
+          clip-path: polygon(0% 100%, 25% 40%, 55% 15%, 80% 50%, 100% 100%);
+      }
+
+      .ocean-container {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 70px;
+          z-index: -2;
+          pointer-events: none;
+      }
+      .wave {
+          position: absolute;
+          bottom: 0;
+          width: 200%;
+          height: 100%;
+          background-repeat: repeat-x;
+          background-position: 0 bottom;
+          transform-origin: center bottom;
+      }
+      .wave1 {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C150,90 350,30 500,60 C650,90 850,30 1000,60 C1150,90 1300,30 1450,60 L1450,120 L0,120 Z" fill="%234ea8de" opacity="0.5"/></svg>');
+          background-size: 1000px 70px;
+          animation: waveMove var(--wave-speed-1, 12s) linear infinite alternate;
+      }
+      .wave2 {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,50 C200,20 400,80 600,50 C800,20 1000,80 1200,50 L1200,120 L0,120 Z" fill="%230077b6"/></svg>');
+          background-size: 1200px 70px;
+          animation: waveMove var(--wave-speed-2, 8s) linear infinite alternate-reverse;
+      }
+
+      #cloud-container, #bird-container {
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+      }
+      .cloud {
+          position: absolute;
+          background: rgba(255, 255, 255, 0.85);
+          border-radius: 100px;
+          filter: blur(2px);
+          animation: cloudDrift var(--speed) linear infinite;
+          box-shadow: inset -10px -10px 20px rgba(0,0,0,0.02), 0 5px 15px rgba(0,0,0,0.05);
+      }
+      .cloud::before, .cloud::after {
+          content: '';
+          position: absolute;
+          background: rgba(255, 255, 255, 1);
+          border-radius: 50%;
+      }
+      .cloud::before { width: 50%; height: 80%; top: -40%; left: 15%; }
+      .cloud::after { width: 40%; height: 70%; top: -30%; right: 15%; }
+
+      .bird {
+          position: absolute;
+          width: 18px;
+          height: 12px;
+          opacity: 0.65;
+          animation: birdFly var(--speed) linear infinite;
+      }
+      .bird-wings {
+          width: 100%;
+          height: 100%;
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 24 16"><path d="M0,8 Q6,0 12,8 Q18,0 24,8 Q18,4 12,8 Q6,4 0,8 Z" fill="%234a5568"/></svg>');
+          background-size: contain;
+          background-repeat: no-repeat;
+          animation: birdFlap 0.4s ease-in-out infinite alternate;
+      }
+
+      @keyframes sunPulse { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(1.05); opacity: 1; } }
+      @keyframes waveMove { 0% { transform: translateX(0) scaleY(0.95); } 100% { transform: translateX(-300px) scaleY(1.05); } }
+      @keyframes cloudDrift { 0% { transform: translateX(105vw); } 100% { transform: translateX(-30vw); } }
+      @keyframes birdFlap { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(1); } }
+      @keyframes birdFly {
+          0% { transform: translate(var(--startX), var(--startY)) var(--flip); }
+          100% { transform: translate(var(--endX), var(--endY)) var(--flip); }
+      }
+      @keyframes auroraShift { 0% { transform: scale(1); } 100% { transform: scale(1.1) translate(10px, -10px); } }
+
+      .tab-menu {
+          display: flex;
+          gap: 10px;
+          background-color: rgba(255, 255, 255, 0.4);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          padding: 10px;
+          border-radius: 16px;
+          max-width: 800px;
+          width: 100%;
+          margin: 0 auto 25px auto;
+          box-sizing: border-box;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          z-index: 20;
+          position: relative;
+          box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+      }
+      .tab-btn {
+          flex: 1;
+          padding: 12px 10px;
+          background-color: rgba(255, 255, 255, 0.3);
+          color: #4a5568;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          font-size: 15px;
+          font-weight: bold;
+          transition: 0.3s;
+      }
+      .tab-btn:hover {
+          background-color: rgba(255, 255, 255, 0.6);
+          color: #1a202c;
+      }
+      .tab-btn.active {
+          background-color: #40916c;
+          color: #ffffff;
+          box-shadow: 0 4px 15px rgba(64, 145, 108, 0.3);
+      }
+
+      .container { 
+          max-width: 800px; 
+          width: 100%;
+          margin: 0 auto; 
+          box-sizing: border-box;
+      }
+      .project-card { 
+          background: #ffffff;
+          padding: 30px; 
+          margin: 20px 0; 
+          border-radius: 24px; 
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02); 
+          text-align: left; 
+          border: 1px solid #e2e8f0;
+      }
+      
+      h1, h2, h3 { color: #2d6a4f; }
+      h1 { font-size: 32px; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
+      p { font-size: 18px; color: #4a5568; line-height: 1.6; }
+      ul { color: #4a5568; line-height: 1.8; font-size: 16px; }
+      li { margin-bottom: 8px; }
+      strong { color: #1b4332; }
+
+      .btn { 
+          display: inline-block; 
+          background: linear-gradient(135deg, #ff9f1c, #ffbf69);
+          color: #fff; 
+          padding: 14px 40px; 
+          text-decoration: none; 
+          border-radius: 16px; 
+          margin-top: 25px; 
+          font-weight: bold; 
+          font-size: 16px;
+          box-shadow: 0 4px 15px rgba(255, 159, 28, 0.3);
+          transition: all 0.3s ease;
+          z-index: 10;
+          position: relative;
+          border: none;
+      }
+      .btn:hover { 
+          transform: translateY(-4px) scale(1.02);
+          box-shadow: 0 6px 20px rgba(255, 159, 28, 0.5);
+      } 
+      .btn:visited { color: #fff; }
+
+      .tab-page { display: none; }
+      #page1 { display: block; }
      </style>
 </head>
 <body>
+
+  <div class="space-aurora"></div>
+  <div class="anime-sun"></div>
+  <div id="cloud-container"></div>
+  <div id="bird-container"></div>
+  
+  <div class="scenery-layer">
+      <div class="mountain-back"></div>
+      <div class="mountain-front"></div>
+  </div>
+
+  <div class="ocean-container">
+      <div class="wave wave1"></div>
+      <div class="wave wave2"></div>
+  </div>
 
      <!-- 1. แถบปุ่มกดเลือกหน้าด้านบน -->
      <div class="tab-menu">
@@ -188,22 +362,95 @@
         <a href="index.html" class="btn">กลับหน้าแรก</a>
      </div>
 
-    <!-- 3. โค้ด JavaScript ควบคุมการเปิด-ปิดหน้า -->
     <script>
-        function openPage(pageId, elmnt) {
-            var contents = document.getElementsByClassName("tab-page");
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].style.display = "none";
-            }
+      function openPage(pageId, elmnt) {
+          var contents = document.getElementsByClassName("tab-page");
+          for (var i = 0; i < contents.length; i++) { 
+              contents[i].style.display = "none"; 
+          }
+          var buttons = document.getElementsByClassName("tab-btn");
+          for (var i = 0; i < buttons.length; i++) { 
+              buttons[i].classList.remove("active"); 
+          }
+          document.getElementById(pageId).style.display = "block";
+          elmnt.classList.add("active");
+          window.scrollTo({top: 0, behavior: 'smooth'});
+      }
 
-            var buttons = document.getElementsByClassName("tab-btn");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
-            }
+      function setupAnimeNature() {
+          document.body.style.setProperty('--wave-speed-1', `${Math.random() * 6 + 9}s`);
+          document.body.style.setProperty('--wave-speed-2', `${Math.random() * 4 + 6}s`);
 
-            document.getElementById(pageId).style.display = "block";
-            elmnt.classList.add("active");
-        }
+          const cloudContainer = document.getElementById('cloud-container');
+          if (cloudContainer) {
+              const cloudCount = 10;
+              for (let i = 0; i < cloudCount; i++) {
+                  const cloud = document.createElement('div');
+                  cloud.classList.add('cloud');
+                  
+                  const width = Math.random() * 120 + 80; 
+                  const height = width * 0.35;
+                  const topPos = Math.random() * 40; 
+                  const speed = Math.random() * 30 + 30; 
+                  const delay = Math.random() * -60; 
+
+                  cloud.style.width = `${width}px`;
+                  cloud.style.height = `${height}px`;
+                  cloud.style.top = `${topPos}%`;
+                  cloud.style.opacity = Math.random() * 0.3 + 0.6;
+                  cloud.style.setProperty('--speed', `${speed}s`);
+                  cloud.style.animationDelay = `${delay}s`;
+                  cloudContainer.appendChild(cloud);
+              }
+          }
+
+          const birdContainer = document.getElementById('bird-container');
+          if (birdContainer) {
+              const birdCount = 12;
+              for (let i = 0; i < birdCount; i++) {
+                  const bird = document.createElement('div');
+                  bird.classList.add('bird');
+                  
+                  const wings = document.createElement('div');
+                  wings.classList.add('bird-wings');
+                  bird.appendChild(wings);
+
+                  const direction = Math.floor(Math.random() * 2);
+                  let startX, endX, flip;
+                  
+                  if (direction === 0) {
+                      startX = "105vw";
+                      endX = "-10vw";
+                      flip = "scaleX(1)"; 
+                  } else {
+                      startX = "-10vw";
+                      endX = "105vw";
+                      flip = "scaleX(-1)"; 
+                  }
+
+                  const startY = `${Math.random() * 45 + 5}%`; 
+                  const endY = `${parseFloat(startY) + (Math.random() * 20 - 10)}%`; 
+                  const speed = Math.random() * 10 + 12; 
+                  const delay = Math.random() * -20; 
+
+                  bird.style.setProperty('--startX', startX);
+                  bird.style.setProperty('--endX', endX);
+                  bird.style.setProperty('--startY', startY);
+                  bird.style.setProperty('--endY', endY);
+                  bird.style.setProperty('--flip', flip);
+                  bird.style.setProperty('--speed', `${speed}s`);
+                  bird.style.animationDelay = `${delay}s`;
+                  
+                  birdContainer.appendChild(bird);
+              }
+          }
+      }
+
+      if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", setupAnimeNature);
+      } else {
+          setupAnimeNature();
+      }
     </script>
 
 </body>
