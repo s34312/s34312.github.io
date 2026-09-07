@@ -79,6 +79,98 @@
           z-index: 1;
       }
 
+
+      .planet-ring-back-shadow {
+          position: absolute;
+          width: 260px;
+          height: 40px;
+          border: 12px solid #ff0066;
+          border-radius: 50%;
+          transform: rotate(-20deg);
+          z-index: 1; 
+      }
+
+      .solar-system-container {
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          width: 240px;
+          height: 240px;
+          z-index: -5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          pointer-events: none;
+          transform: perspective(600px) rotateX(45deg);
+      }
+
+      .solar-sun {
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          background: radial-gradient(circle, #fff 0%, #ff8c00 60%, #ff3300 100%);
+          border-radius: 50%;
+          box-shadow: 0 0 25px #ff8c00, 0 0 40px rgba(255, 140, 0, 0.6);
+          z-index: 5;
+      }
+
+      .orbit-1 {
+          position: absolute;
+          width: 90px;
+          height: 90px;
+          border: 1px dashed rgba(255, 255, 255, 0.15);
+          border-radius: 50%;
+          animation: orbitRotate 5s linear infinite;
+      }
+      .planet-1 {
+          position: absolute;
+          top: -5px;
+          left: calc(50% - 5px);
+          width: 10px;
+          height: 10px;
+          background-color: #ff0066;
+          border-radius: 50%;
+          box-shadow: 0 0 10px #ff0066;
+      }
+
+      .orbit-2 {
+          position: absolute;
+          width: 150px;
+          height: 150px;
+          border: 1px dashed rgba(255, 255, 255, 0.15);
+          border-radius: 50%;
+          animation: orbitRotate 9s linear infinite;
+      }
+      .planet-2 {
+          position: absolute;
+          top: -7px;
+          left: calc(50% - 7px);
+          width: 14px;
+          height: 14px;
+          background-color: #11FF00;
+          border-radius: 50%;
+          box-shadow: 0 0 12px #11FF00;
+      }
+
+      .orbit-3 {
+          position: absolute;
+          width: 210px;
+          height: 210px;
+          border: 1px dashed rgba(255, 255, 255, 0.15);
+          border-radius: 50%;
+          animation: orbitRotate 14s linear infinite;
+      }
+      .planet-3 {
+          position: absolute;
+          top: -6px;
+          left: calc(50% - 6px);
+          width: 12px;
+          height: 12px;
+          background-color: #00ffcc;
+          border-radius: 50%;
+          box-shadow: 0 0 12px #00ffcc;
+      }
+
       #star-container {
           position: fixed;
           inset: 0;
