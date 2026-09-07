@@ -104,6 +104,20 @@
           transform: perspective(600px) rotateX(45deg);
       }
 
+      .solar-system-container {
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          width: 240px;
+          height: 240px;
+          z-index: -5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          pointer-events: none;
+          transform: perspective(600px) rotateX(45deg); 
+      }
+
       .solar-sun {
           position: absolute;
           width: 30px;
@@ -169,13 +183,6 @@
           background-color: #00ffcc;
           border-radius: 50%;
           box-shadow: 0 0 12px #00ffcc;
-      }
-
-      #star-container {
-          position: fixed;
-          inset: 0;
-          z-index: -4;
-          pointer-events: none;
       }
 
       .star {
