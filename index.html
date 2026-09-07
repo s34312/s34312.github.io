@@ -185,6 +185,62 @@
           box-shadow: 0 0 12px #00ffcc;
       }
 
+      .constellation-box {
+          position: fixed;
+          top: 40px;
+          left: 40px;
+          width: 200px;
+          height: 150px;
+          z-index: -6;
+          pointer-events: none;
+          opacity: 0.7;
+          animation: starTwinkle 4s ease-in-out infinite alternate;
+      }
+      .c-node {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          background-color: #00ffcc;
+          border-radius: 50%;
+          box-shadow: 0 0 15px #00ffcc, 0 0 25px #00ffcc;
+      }
+      .c-line {
+          position: absolute;
+          background: linear-gradient(90deg, rgba(0, 255, 204, 0.4), rgba(122, 0, 255, 0.2));
+          height: 1px;
+          transform-origin: left center;
+      }
+
+      .spaceship-container {
+          position: fixed;
+          bottom: 230px;
+          left: 120px;
+          z-index: -5;
+          pointer-events: none;
+          animation: shipPatrol 6s ease-in-out infinite alternate;
+      }
+      .spaceship {
+          position: relative;
+          width: 35px;
+          height: 15px;
+          background: linear-gradient(90deg, #ff8c00, #333);
+          border-radius: 50% 80% 20% 20%;
+          box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+          transform: rotate(-15deg);
+      }
+      .spaceship::after {
+          content: "";
+          position: absolute;
+          left: -12px;
+          top: 4px;
+          width: 12px;
+          height: 6px;
+          background: linear-gradient(90deg, transparent, #00ffcc);
+          border-radius: 50%;
+          box-shadow: -5px 0 10px #00ffcc;
+          animation: jetFlame 0.2s linear infinite alternate;
+      }
+
       .star {
           position: absolute;
           background-color: #ffffff;
@@ -385,11 +441,25 @@
       <div class="planet-ring"></div>             
   </div>
 
+  <div class="constellation-box">
+      <div class="c-node" style="top: 20px; left: 30px;"></div>
+      <div class="c-node" style="top: 50px; left: 110px;"></div>
+      <div class="c-node" style="top: 110px; left: 60px;"></div>
+      <div class="c-node" style="top: 80px; left: 160px;"></div>
+      <div class="c-line" style="top: 23px; left: 33px; width: 83px; transform: rotate(20deg);"></div>
+      <div class="c-line" style="top: 53px; left: 113px; width: 70px; transform: rotate(135deg);"></div>
+      <div class="c-line" style="top: 113px; left: 63px; width: 103px; transform: rotate(-17deg);"></div>
+  </div>
+
    <div class="solar-system-container">
       <div class="solar-sun"></div>
       <div class="orbit-1"><div class="planet-1"></div></div>
       <div class="orbit-2"><div class="planet-2"></div></div>
       <div class="orbit-3"><div class="planet-3"></div></div>
+  </div>
+
+    <div class="spaceship-container" style="position: fixed; bottom: 150px; right: 120px; left: auto;">
+      <div class="spaceship" style="transform: rotate(165deg);"></div>
   </div>
 
   <div class="card">
