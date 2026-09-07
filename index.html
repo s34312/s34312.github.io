@@ -28,12 +28,44 @@
           text-decoration: none; 
           border-radius: 10px; 
           margin-top: 20px; 
+          font-weight: bold;
+          transition: 0.3s;
+      }
+      .btn:hover {
+          background: #e07b00;
       }
       .btn:visited {
           color: white;
       }
       h1 { color: #2c3e50; }
       p { font-size: 18px; line-height: 1.6; }
+
+      .img-animation-container {
+          position: relative;
+          width: 200px;
+          height: 200px;
+          margin: 20px auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .img-animation-container::before,
+      .img-animation-container::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50% !important;
+          border: 4px solid #FF8C00;
+          box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
+          animation: pulse 2s infinite ease-out;
+          opacity: 0;
+      }
+
+      .img-animation-container::after {
+          animation-delay: 1s;
+      }
 
       .profile-effect {
           width: 200px;
@@ -42,21 +74,35 @@
           object-fit: cover;
           border: 5px solid #11FF00;
           box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-          transition: all 0.3s ease-in-out;
+          z-index: 2;
+          transition: transform 0.3s ease-in-out;
       }
 
       .profile-effect:hover {
           transform: scale(1.08);
-          border-color: #FF8C00;
-          box-shadow: 0 8px 20px rgba(0,0,0,0.3);
           cursor: pointer;
       }
-   </style>
+
+      @keyframes pulse {
+          0% {
+              transform: scale(0.95);
+              opacity: 0.8;
+          }
+          100% {
+              transform: scale(1.25);
+              opacity: 0;
+          }
+      }
+  </style>
 </head>
 <body>
   <div class="card">
       <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน </h1>
-      <img src="113596.jpg" class="profile-effect" alt="Profile">
+
+      <div class="img-animation-container">
+        <img src="113596.jpg" class="profile-effect" alt="Profile">
+      </div>
+
       <p>สวัสดีครับ! ผมชื่อ <strong>อิทธิพัทธ์ แจ่มจำรัส (Itthipat Jamjumras)</strong> ชั้น ม.6/3 เลขที่ 7</p>
       <p>ขณะนี้กำลังศึกษาอยู่สายการเรียน MSEP สนใจด้านรัฐศาสตร์และนิติศาสตร์</p>
       <p>นี่คือเว็บไซต์แรกของผมที่โฮสต์บน GitHub Pages!</p>
@@ -65,7 +111,7 @@
 
 <body>
    <div class=".btn">
-        <a href="portfolio.html" class="btn"> หน้าแสดงผลงาน</a>
+        <a href="portfolio.html" class="btn"> หน้าแสดง Portfolio</a>
    </div>
 </body>
 </html>
