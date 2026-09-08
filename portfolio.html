@@ -92,6 +92,61 @@
           animation: waveHorizontal 10s linear infinite;
       }
 
+      .sea-objects-container {
+          position: fixed;
+          bottom: 45px;
+          left: 15%;
+          width: 40px;
+          height: 40px;
+          z-index: -2;
+          pointer-events: none;
+          animation: boatSway 4s ease-in-out infinite alternate;
+      }
+      .boat {
+          position: relative;
+          width: 30px;
+          height: 10px;
+          background: #fdf0d5;
+          border-radius: 0 0 10px 10px;
+      }
+      .boat::before {
+          content: "";
+          position: absolute;
+          bottom: 10px;
+          left: 8px;
+          width: 0;
+          height: 0;
+          border-left: 12px solid transparent;
+          border-bottom: 22px solid #ffffff;
+      }
+
+      #fish-container {
+          position: fixed;
+          bottom: 30px;
+          inset-x: 0;
+          height: 100px;
+          z-index: -2;
+          pointer-events: none;
+      }
+      .dolphin {
+          position: absolute;
+          width: 24px;
+          height: 12px;
+          background-color: #4ea8de;
+          border-radius: 50% 50% 0 0;
+          animation: dolphinJump var(--speed) ease-in-out infinite;
+          animation-delay: var(--delay);
+          opacity: 0;
+      }
+      .dolphin::before {
+          content: "";
+          position: absolute;
+          right: -4px; top: 4px;
+          width: 6px; height: 6px;
+          background-color: #4ea8de;
+          clip-path: polygon(0 0, 100% 50%, 0 100%);
+      }
+
       #cloud-container, #bird-container {
           position: fixed;
           inset: 0;
