@@ -48,32 +48,52 @@
           bottom: 0;
           left: 0;
           width: 100%;
-          height: 380px;
+          height: 480px;
           z-index: -3;
           pointer-events: none;
       }
+
+      .mount-fuji {
+          position: absolute;
+          bottom: 50px;
+          left: 10%;
+          width: 500px;
+          height: 320px;
+          clip-path: polygon(0% 100%, 42% 15%, 58% 15%, 100% 100%);
+          background: linear-gradient(to bottom, #4a6fa5 0%, #3b537d 100%);
+          opacity: 0.85;
+      }
+
+      .mount-fuji::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          clip-path: polygon(42% 15%, 58% 15%, 63% 35%, 56% 30%, 52% 40%, 48% 32%, 44% 42%, 37% 35%);
+          background: linear-gradient(to bottom, #ffffff 0%, #e2e8f0 100%);
+      }
+
       .mountain-back {
           position: absolute;
           bottom: 40px;
           left: -5%;
           width: 70%;
-          height: 250px;
-          background: #7ca8ab;
+          height: 200px;
           clip-path: polygon(0% 100%, 15% 45%, 28% 20%, 42% 55%, 55% 30%, 68% 65%, 82% 15%, 92% 45%, 100% 100%);
           background: linear-gradient(135deg, #74a0a5 0%, #4f7478 100%);
           opacity: 0.6;
       }
+
       .mountain-front {
           position: absolute;
           bottom: 30px;
           right: -10%;
           width: 65%;
-          height: 280px;
+          height: 250px;
           clip-path: polygon(0% 100%, 10% 70%, 18% 50%, 25% 55%, 32% 35%, 40% 42%, 48% 20%, 58% 28%, 65% 15%, 75% 38%, 85% 25%, 95% 60%, 100% 100%);
-          background: 
-              radial-gradient(circle at 30% 30%, #40916c 0%, transparent 60%),
-              radial-gradient(circle at 70% 45%, #2d6a4f 0%, transparent 70%),
-              linear-gradient(to top, #1b4332 0%, #52b788 100%);
+          background: radial-gradient(circle at 30% 30%, #40916c 0%, transparent 60%), radial-gradient(circle at 70% 45%, #2d6a4f 0%, transparent 70%), linear-gradient(to top, #1b4332 0%, #52b788 100%);
           box-shadow: inset 0 20px 30px rgba(255,255,255,0.1);
       }
 
@@ -355,6 +375,7 @@
   <div id="fish-container"></div>
   
   <div class="scenery-layer">
+      <div class="mount-fuji"></div>
       <div class="mountain-back"></div>
       <div class="mountain-front"></div>
   </div>
