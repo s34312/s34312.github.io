@@ -93,14 +93,15 @@
       }
 
       .sea-objects-container {
-          position: fixed;
-          bottom: 45px;
-          left: 15%;
+          position: absolute;
+          bottom: 28px;
+          left: 0;
           width: 40px;
           height: 40px;
-          z-index: -2;
+          z-index: 2;
           pointer-events: none;
-          animation: boatSway 4s ease-in-out infinite alternate;
+          animation: boatSway 4s ease-in-out infinite alternate, boatSail var(--speed, 45s) linear infinite;
+          animation-delay: var(--delay, 0s);
       }
       .boat {
           position: relative;
@@ -223,7 +224,7 @@
       }
       @keyframes boatSway {
           0% { transform: translateY(0) rotate(-3deg); }
-          100% { transform: translateY(6px) rotate(3deg); }
+          100% { transform: translateY(3px) rotate(3deg); }
       }
       @keyframes dolphinJump {
           0% { transform: translate(var(--startX), 60px) rotate(-45deg); opacity: 0; }
@@ -573,23 +574,23 @@
 
           const fishContainer = document.getElementById('fish-container');
           if (fishContainer) {
-              const dolphinCount = 4; 
+              const dolphinCount = 6;
               for (let i = 0; i < dolphinCount; i++) {
                   const dolphin = document.createElement('div');
                   dolphin.classList.add('dolphin');
 
-                  const startX = Math.random() * 60 + 10; 
-                  const jumpDistance = Math.random() * 80 + 60; 
+                  const startX = Math.random() * 80 + 5;
+                  const jumpDistance = Math.random() * 8 + 6; 
                   const endX = startX + jumpDistance;
                   const midX = startX + (jumpDistance / 2); 
 
-                  const jumpHeight = (Math.random() * -30 - 30) + "px"; 
-                  const speed = Math.random() * 2 + 3; 
-                  const delay = Math.random() * 10; 
+                  const jumpHeight = (Math.random() * -25 - 35) + "px"; 
+                  const speed = Math.random() * 2 + 2.5;
+                  const delay = Math.random() * 12;
 
-                  dolphin.style.setProperty('--startX', startX + "px");
-                  dolphin.style.setProperty('--midX', midX + "px");
-                  dolphin.style.setProperty('--endX', endX + "px");
+                  dolphin.style.setProperty('--startX', startX + "vw");
+                  dolphin.style.setProperty('--midX', midX + "vw");
+                  dolphin.style.setProperty('--endX', endX + "vw");
                   dolphin.style.setProperty('--jumpHeight', jumpHeight);
                   dolphin.style.setProperty('--speed', speed + "s");
                   dolphin.style.setProperty('--delay', delay + "s");
