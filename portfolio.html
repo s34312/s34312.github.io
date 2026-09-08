@@ -20,6 +20,15 @@
           align-items: center;
       }
 
+      body::before {
+          content: "";
+          position: fixed;
+          inset: 0;
+          z-index: -10;
+          background: linear-gradient(to bottom, #ffbe94 0%, #ffe3d1 35%, #bde0fe 75%, #a2d2ff 100%);
+          pointer-events: none;
+      }
+
       .anime-sun {
           position: fixed;
           top: 30px;
@@ -81,7 +90,7 @@
       }
       .ocean-container::before {
           content: "";
-          position: fixed;
+          position: absolute;
           top: -15px;
           left: 0;
           width: 200%;
@@ -95,7 +104,7 @@
       .sea-objects-container {
           position: fixed;
           bottom: 28px;
-          left: 15%;
+          left: 0;
           width: 40px;
           height: 40px;
           z-index: -2;
@@ -505,8 +514,13 @@
       }
 
       function setupAnimeNature() {
-          document.body.style.setProperty('--wave-speed-1', `${Math.random() * 6 + 9}s`);
-          document.body.style.setProperty('--wave-speed-2', `${Math.random() * 4 + 6}s`);
+          const boatLayer = document.getElementById('boat-layer');
+          if (boatLayer) {
+              const boatSpeed = Math.random() * 20 + 40; 
+              const boatDelay = Math.random() * -30; 
+              boatLayer.style.setProperty('--speed', boatSpeed + "s");
+              boatLayer.style.animationDelay = boatDelay + "s";
+          }
 
           const cloudContainer = document.getElementById('cloud-container');
           if (cloudContainer) {
