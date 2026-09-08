@@ -81,7 +81,7 @@
       }
       .ocean-container::before {
           content: "";
-          position: absolute;
+          position: fixed;
           top: -15px;
           left: 0;
           width: 200%;
@@ -93,12 +93,12 @@
       }
 
       .sea-objects-container {
-          position: absolute;
+          position: fixed;
           bottom: 28px;
-          left: 0;
+          left: 15%;
           width: 40px;
           height: 40px;
-          z-index: 2;
+          z-index: -2;
           pointer-events: none;
           animation: boatSway 4s ease-in-out infinite alternate, boatSail var(--speed, 45s) linear infinite;
           animation-delay: var(--delay, 0s);
