@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แฟ้มสะสมงานของฉัน</title>
+    <style>
+      body { 
+          font-family: sans-serif; 
+          margin: 0;
+          padding: 40px 20px;
+          text-align: center; 
+          background: linear-gradient(to bottom, #ffbe94 0%, #ffe3d1 30%, #bde0fe 70%, #a2d2ff 100%);
+          position: relative;
+          overflow-x: hidden;
+          min-height: 100vh;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      body::before {
+          content: "";
+          position: fixed;
+          inset: 0;
+          z-index: -10;
+          background: linear-gradient(to bottom, #ffbe94 0%, #ffe3d1 35%, #bde0fe 75%, #a2d2ff 100%);
+          pointer-events: none;
+      }
+
+      .anime-sun {
+          position: fixed;
+          top: 30px;
+          right: 40px;
+          width: 90px;
+          height: 90px;
+          background: radial-gradient(circle at 30% 30%, #fff 20%, #ffebd9 50%, #ffb38a 100%);
+          border-radius: 50%;
+          box-shadow: 0 0 50px rgba(255, 179, 138, 0.8), 0 0 100px rgba(255, 255, 255, 0.4);
+          z-index: -4;
+          animation: sunPulse 6s ease-in-out infinite alternate;
+          pointer-events: none;
+      }
+
+      .scenery-layer {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 480px; 
+          z-index: -3; 
+          pointer-events: none;
+      }
+
+      .mount-fuji {
+          position: absolute;
+          bottom: 45px;      
+          left: -5%;         
+          width: 900px;      
+          height: 600px;     
+          clip-path: polygon(0% 100%, 44% 15%, 56% 15%, 100% 100%);
+          background: linear-gradient(to bottom, #3b5984 0%, #243b61 100%);
+
+          z-index: 1 !important; 
+      }
+      .mount-fuji::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          clip-path: polygon(44% 15%, 56% 15%, 61% 32%, 55% 28%, 51% 38%, 48% 30%, 45% 39%, 39% 32%);
+          background: #ffffff;
+      }
+
+      .mountain-back {
+          position: absolute;
+          bottom: 40px;
+          left: -5%;
+          width: 70%;
+          height: 200px;
+          clip-path: polygon(0% 100%, 15% 45%, 28% 20%, 42% 55%, 55% 30%, 68% 65%, 82% 15%, 92% 45%, 100% 100%);
+
+          background: linear-gradient(135deg, #74a0a5 0%, #466367 100%);
+
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+
+          z-index: 2 !important; 
+      }
+
+      .mountain-front {
+          position: absolute;
+          bottom: 30px;
+          right: -10%;
+          width: 65%;
+          height: 250px;
+          clip-path: polygon(0% 100%, 10% 70%, 18% 50%, 25% 55%, 32% 35%, 40% 42%, 48% 20%, 58% 28%, 65% 15%, 75% 38%, 85% 25%, 95% 60%, 100% 100%);
+          background: linear-gradient(to top, #1b4332 0%, #2d6a4f 50%, #40916c 100%);
+          box-shadow: inset 0 20px 30px rgba(255,255,255,0.08);
+
+          z-index: 3 !important; 
+      }
+
+      .ocean-container {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 60px;
+          z-index: -2;
+          pointer-events: none;
+          background: #0077b6;
+          box-shadow: inset 0 15px 20px rgba(255,255,255,0.2);
+      }
+      .ocean-container::before {
+          content: "";
+          position: absolute;
+          top: -15px;
+          left: 0;
+          width: 200%;
+          height: 20px;
+          background: repeat-x;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,90 350,30 500,60 C650,90 850,30 1000,60 C1150,90 1300,30 1450,60 L1450,120 L0,120 Z' fill='%230077b6'/%3E%3C/svg%3E");
+          background-size: 1200px 20px;
+          animation: waveHorizontal 10s linear infinite;
+      }
+
+      .sea-objects-container {
+          position: fixed;
+          bottom: 28px;
+          left: 0;
+          width: 40px;
+          height: 40px;
+          z-index: -2;
+          pointer-events: none;
+          animation: boatSway 4s ease-in-out infinite alternate, boatSail var(--speed, 45s) linear infinite;
+          animation-delay: var(--delay, 0s);
+      }
+      .boat {
+          position: relative;
+          width: 30px;
+          height: 10px;
+          background: #fdf0d5;
+          border-radius: 0 0 10px 10px;
+      }
+      .boat::before {
+          content: "";
+          position: absolute;
+          bottom: 10px;
+          left: 8px;
+          width: 0;
+          height: 0;
+          border-left: 12px solid transparent;
+          border-bottom: 22px solid #ffffff;
+      }
+
+      #fish-container {
+          position: fixed;
+          bottom: 30px;
+          inset-x: 0;
+          height: 100px;
+          z-index: -2;
+          pointer-events: none;
+      }
+      .dolphin {
+          position: absolute;
+          width: 24px;
+          height: 12px;
+          background-color: #4ea8de;
+          border-radius: 50% 50% 0 0;
+          animation: dolphinJump var(--speed) ease-in-out infinite;
+          animation-delay: var(--delay);
+          opacity: 0;
+      }
+      .dolphin::before {
+          content: "";
+          position: absolute;
+          right: -4px; top: 4px;
+          width: 6px; height: 6px;
+          background-color: #4ea8de;
+          clip-path: polygon(0 0, 100% 50%, 0 100%);
+      }
+
+      #cloud-container, #bird-container {
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+      }
+      .cloud {
+          position: absolute;
+          background: rgba(255, 255, 255, 0.85);
+          border-radius: 100px;
+          filter: blur(2px);
+          animation: cloudDrift var(--speed) linear infinite;
+          box-shadow: inset -10px -10px 20px rgba(0,0,0,0.02), 0 5px 15px rgba(0,0,0,0.05);
+
+          z-index: -5 !important;
+      }
+      .cloud::before, .cloud::after {
+          content: '';
+          position: absolute;
+          background: rgba(255, 255, 255, 1);
+          border-radius: 50%;
+      }
+      .cloud::before { width: 50%; height: 80%; top: -40%; left: 15%; }
+      .cloud::after { width: 40%; height: 70%; top: -30%; right: 15%; }
+
+      .bird {
+          position: absolute;
+          width: 18px;
+          height: 12px;
+          opacity: 0.65;
+          animation: birdFly var(--speed) linear infinite;
+      }
+      .bird-wings {
+          width: 100%;
+          height: 100%;
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 24 16"><path d="M0,8 Q6,0 12,8 Q18,0 24,8 Q18,4 12,8 Q6,4 0,8 Z" fill="%234a5568"/></svg>');
+          background-size: contain;
+          background-repeat: no-repeat;
+          animation: birdFlap 0.4s ease-in-out infinite alternate;
+      }
+      .bird-wings::before, .bird-wings::after {
+          content: "";
+          width: 15px;
+          height: 10px;
+          border: 2px solid #4a5568;
+          border-bottom: none;
+          border-left: none;
+          border-radius: 10px 10px 0 0;
+          transform-origin: left bottom;
+          animation: wingFlap 0.3s ease-in-out infinite alternate;
+      }
+      .bird-wings::before {
+          border-left: 2px solid #4a5568;
+          border-right: none;
+          transform-origin: right bottom;
+      }
+
+      @keyframes sunPulse { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(1.05); opacity: 1; } }
+      
+      @keyframes waveHorizontal {
+          0% { background-position-x: 0px; }
+          100% { background-position-x: -1200px; }
+      }
+      @keyframes cloudDrift {
+          0% { transform: translateX(105vw); }
+          100% { transform: translateX(-30vw); }
+      }
+      @keyframes wingFlap {
+          0% { transform: rotate(-30deg); }
+          100% { transform: rotate(30deg); }
+      }
+      @keyframes birdFly {
+          0% { transform: translate(var(--startX), var(--startY)) var(--flip); }
+          100% { transform: translate(var(--endX), var(--endY)) var(--flip); }
+      }
+      @keyframes boatSway {
+          0% { transform: translateY(0) rotate(-3deg); }
+          100% { transform: translateY(3px) rotate(3deg); }
+      }
+      @keyframes dolphinJump {
+          0% { transform: translate(var(--startX), 60px) rotate(-45deg); opacity: 0; }
+          15% { opacity: 1; }
+          45% { transform: translate(var(--midX), var(--jumpHeight)) rotate(0deg); }
+          75% { opacity: 1; }
+          90%, 100% { transform: translate(var(--endX), 60px) rotate(45deg); opacity: 0; }
+      }
+
+      @keyframes sunPulse { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(1.05); opacity: 1; } }
+      @keyframes waveMove { 0% { transform: translateX(0) scaleY(0.95); } 100% { transform: translateX(-300px) scaleY(1.05); } }
+      @keyframes cloudDrift { 0% { transform: translateX(105vw); } 100% { transform: translateX(-30vw); } }
+      @keyframes birdFlap { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(1); } }
+      @keyframes birdFly {
+          0% { transform: translate(var(--startX), var(--startY)) var(--flip); }
+          100% { transform: translate(var(--endX), var(--endY)) var(--flip); }
+      }
+      @keyframes auroraShift { 0% { transform: scale(1); } 100% { transform: scale(1.1) translate(10px, -10px); } }
+
+      .tab-menu {
+          display: flex;
+          gap: 10px;
+          background-color: rgba(255, 255, 255, 0.4);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          padding: 10px;
+          border-radius: 16px;
+          max-width: 800px;
+          width: 100%;
+          margin: 0 auto 25px auto;
+          box-sizing: border-box;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          z-index: 20;
+          position: relative;
+          box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+
+          position: relative;
+          z-index: 50 !important; 
+      }
+      .tab-btn {
+          flex: 1;
+          padding: 12px 10px;
+          background-color: rgba(255, 255, 255, 0.3);
+          color: #4a5568;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          font-size: 15px;
+          font-weight: bold;
+          transition: 0.3s;
+      }
+      .tab-btn:hover {
+          background-color: rgba(255, 255, 255, 0.6);
+          color: #1a202c;
+      }
+      .tab-btn.active {
+          background-color: #40916c;
+          color: #ffffff;
+          box-shadow: 0 4px 15px rgba(64, 145, 108, 0.3);
+      }
+
+      .container { 
+          max-width: 800px; 
+          width: 100%;
+          margin: 0 auto; 
+          box-sizing: border-box;
+      }
+      .project-card { 
+          background: #ffffff;
+          padding: 30px; 
+          margin: 20px 0; 
+          border-radius: 24px; 
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02); 
+          text-align: left; 
+          border: 1px solid #e2e8f0;
+
+          position: relative;
+          z-index: 10 !important; 
+      }
+      
+      h1, h2, h3 { color: #2d6a4f; }
+      h1 { font-size: 32px; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
+      p { font-size: 18px; color: #4a5568; line-height: 1.6; }
+      ul { color: #4a5568; line-height: 1.8; font-size: 16px; }
+      li { margin-bottom: 8px; }
+      strong { color: #1b4332; }
+
+      .btn { 
+          display: inline-block; 
+          background: linear-gradient(135deg, #ff9f1c, #ffbf69);
+          color: #fff; 
+          padding: 14px 40px; 
+          text-decoration: none; 
+          border-radius: 16px; 
+          margin-top: 25px; 
+          font-weight: bold; 
+          font-size: 16px;
+          box-shadow: 0 4px 15px rgba(255, 159, 28, 0.3);
+          transition: all 0.3s ease;
+          z-index: 10;
+          position: relative;
+          border: none;
+      }
+      .btn:hover { 
+          transform: translateY(-4px) scale(1.02);
+          box-shadow: 0 6px 20px rgba(255, 159, 28, 0.5);
+      } 
+      .btn:visited { color: #fff; }
+
+      .tab-page {
+          display: block;
+      }
+     </style>
+</head>
+<body>
+
+  <div class="anime-sun"></div>
+  <div id="cloud-container"></div>
+  <div id="bird-container"></div>
+  <div id="fish-container"></div>
+  
+  <div class="scenery-layer">
+      <div class="mount-fuji"></div>
+      <div class="mountain-back"></div>
+      <div class="mountain-front"></div>
+  </div>
+
+  <div class="sea-objects-container">
+      <div class="boat"></div>
+  </div>
+
+  <div class="ocean-container">
+      <div class="sea-objects-container">
+          <div class="boat"></div>
+      </div>
+      <div id="fish-container"></div> 
+  </div>
+
+     <!-- 1. แถบปุ่มกดเลือกหน้าด้านบน -->
+     <div class="tab-menu">
+        <a href="portfolio.html style"flex: 1; text decoration: none;"><button"class="tab-btn active">ข้อมูลส่วนตัว</button>
+        <a href="dream.html style"flex: 1; text decoration: none;"><button class="tab-btn">ความใฝ่ฝัน</button>
+        <a href="certificate.html style"flex: 1; text decoration: none;"><button class="tab-btn">ผลงานและเกียรติบัตร</button>
+        <a href="contact.html style"flex: 1; text decoration: none;"><button class="tab-btn">ติดต่อ</button>
+     </div>
+
+     <!-- หน้าที่ 1 -->
+     <div id="page1" class="container tab-page">
+
+      <div class="project-card" style="margin-bottom: 10px; text-align: center;">
+          <h2 style="margin: 0 0 5px 0;">ข้อมูลส่วนตัว</h2>
+          <p style="margin: 0; font-size: 16px;">ยินดีต้อนรับสู่ระบบแฟ้มสะสมผลงานดิจิทัลของผมครับ นี่คือข้อมูลส่วนตัวของผมครับ</p>
+      </div>
+
+        <!-- กล่องประวัติส่วนตัว -->
+        <div class="project-card">
+            <h3>ประวัติส่วนตัว</h3>
+            <ul>
+                <li>ชื่อจริง: อิทธิพัทธ์ แจ่มจำรัส</li>
+                <li>ชื่อจริงภาษาอังกฤษ: Itthipat Jamjumras</li>
+                <li>ชื่อเล่น: อุลตร้า</li>
+                <li>เกิดวันที่: 7 กันยายน 2551</li>
+                <li>อายุ: 18 ปี</li>
+                <li>น้ำหนัก: 49 กิโลกรัม</li>
+                <li>ส่วนสูง: 161 เซนติเมตร</li>
+                <li>สีที่ชอบ: สีเขียว</li>
+                <li>ระดับชั้น: มัธยมศึกษาปีที่ 6/3</li>
+                <li>แผนการเรียน: Mathematics & Science Enrichment Program (MSEP) </li>
+                <li>วิชาที่ชอบ: ประวัติศาสตร์</li>
+                <li>สถานศึกษา: โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</li>
+            </ul>
+        </div>
+
+        <!-- กล่องงานอดิเรก -->
+        <div class="project-card">
+            <h3>งานอดิเรก</h3>
+            <ul>
+                <li>ฟัง Podcast</li>
+                <li>ฟังเพลง</li>
+                <li>วาดรูป</li>
+                <li>เล่นเกมส์</li>
+                <li>สะสมธงนานาชาติ</li>
+            </ul>
+        </div>
+
+        <!-- กล่องทักษะ -->
+        <div class="project-card">
+            <h3>ทักษะ</h3>
+            <ul>
+                <li>ใช้ภาษาอังกฤษได้คล่องในระดับหนึ่ง</li>
+                <li>ออกแบบกราฟิกได้เล็กน้อย</li>
+                <li>สามารถตัดต่อคลิปวิดีโอได้คล่องในระดับหนึ่ง</li>
+                <li>สามารถพูดภาษาจีนและภาษาสเปนได้ในระดับเล็กน้อย</li>
+            </ul>
+        </div>
+     </div> <!-- ปิดหน้า 1 -->
+
+  <script>
+      function setupAnimeNature() {
+          const cloudContainer = document.getElementById('cloud-container');
+          if (cloudContainer) {
+              const cloudCount = 8;
+              for (let i = 0; i < cloudCount; i++) {
+                  const cloud = document.createElement('div');
+                  cloud.classList.add('cloud');
+                  const width = Math.random() * 120 + 80; 
+                  const height = width * 0.35;
+                  const topPos = Math.random() * 35; 
+                  const speed = Math.random() * 25 + 35; 
+                  const delay = Math.random() * -60; 
+                  cloud.style.width = width + "px";
+                  cloud.style.height = height + "px";
+                  cloud.style.top = topPos + "%";
+                  cloud.style.opacity = Math.random() * 0.3 + 0.6;
+                  cloud.style.setProperty('--speed', speed + "s");
+                  cloud.style.animationDelay = delay + "s";
+                  cloudContainer.appendChild(cloud);
+              }
+          }
+
+          const birdContainer = document.getElementById('bird-container');
+          if (birdContainer) {
+              const birdCount = 10;
+              for (let i = 0; i < birdCount; i++) {
+                  const bird = document.createElement('div');
+                  bird.classList.add('bird');
+                  const wings = document.createElement('div');
+                  wings.classList.add('bird-wings');
+                  bird.appendChild(wings);
+                  const direction = Math.floor(Math.random() * 2);
+                  let startX, endX, flip;
+                  if (direction === 0) { startX = "105vw"; endX = "-10vw"; flip = "scaleX(1)"; } 
+                  else { startX = "-10vw"; endX = "105vw"; flip = "scaleX(-1)"; }
+                  const startY = Math.random() * 40 + 5 + "%"; 
+                  const endY = (parseFloat(startY) + (Math.random() * 20 - 10)) + "%"; 
+                  const speed = Math.random() * 8 + 12; 
+                  const delay = Math.random() * -25; 
+                  bird.style.setProperty('--startX', startX);
+                  bird.style.setProperty('--endX', endX);
+                  bird.style.setProperty('--startY', startY);
+                  bird.style.setProperty('--endY', endY);
+                  bird.style.setProperty('--flip', flip);
+                  bird.style.setProperty('--speed', speed + "s");
+                  bird.style.animationDelay = delay + "s";
+                  birdContainer.appendChild(bird);
+              }
+          }
+
+          const fishContainer = document.getElementById('fish-container');
+          if (fishContainer) {
+              const dolphinCount = 6; 
+              for (let i = 0; i < dolphinCount; i++) {
+                  const dolphin = document.createElement('div');
+                  dolphin.classList.add('dolphin');
+                  const startX = Math.random() * 80 + 5; 
+                  const jumpDistance = Math.random() * 8 + 6; 
+                  const endX = startX + jumpDistance;
+                  const midX = startX + (jumpDistance / 2); 
+                  const jumpHeight = (Math.random() * -25 - 35) + "px"; 
+                  const speed = Math.random() * 2 + 2.5; 
+                  const delay = Math.random() * 12; 
+                  dolphin.style.setProperty('--startX', startX + "vw");
+                  dolphin.style.setProperty('--midX', midX + "vw");
+                  dolphin.style.setProperty('--endX', endX + "vw");
+                  dolphin.style.setProperty('--jumpHeight', jumpHeight);
+                  dolphin.style.setProperty('--speed', speed + "s");
+                  dolphin.style.setProperty('--delay', delay + "s");
+                  fishContainer.appendChild(dolphin);
+              }
+          }
+      }
+
+      if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", setupAnimeNature);
+      } else {
+          setupAnimeNature();
+      }
+  </script>
+
+</body>
+</html>
