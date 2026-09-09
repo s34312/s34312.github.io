@@ -457,117 +457,76 @@
         </div>
      </div> <!-- ปิดหน้า 1 -->
 
-    <script>
-      function openPage(pageId, elmnt) {
-          var contents = document.getElementsByClassName("tab-page");
-          for (var i = 0; i < contents.length; i++) { 
-              contents[i].style.display = "none"; 
-          }
-          var buttons = document.getElementsByClassName("tab-btn");
-          for (var i = 0; i < buttons.length; i++) { 
-              buttons[i].classList.remove("active"); 
-          }
-          document.getElementById(pageId).style.display = "block";
-          elmnt.classList.add("active");
-          window.scrollTo({top: 0, behavior: 'smooth'});
-      }
-
+  <script>
       function setupAnimeNature() {
-          const boatLayer = document.getElementById('boat-layer');
-          if (boatLayer) {
-              const boatSpeed = Math.random() * 20 + 40; 
-              const boatDelay = Math.random() * -30; 
-              boatLayer.style.setProperty('--speed', boatSpeed + "s");
-              boatLayer.style.animationDelay = boatDelay + "s";
-          }
-
           const cloudContainer = document.getElementById('cloud-container');
           if (cloudContainer) {
-              const cloudCount = 10;
+              const cloudCount = 8;
               for (let i = 0; i < cloudCount; i++) {
                   const cloud = document.createElement('div');
                   cloud.classList.add('cloud');
-                  
                   const width = Math.random() * 120 + 80; 
                   const height = width * 0.35;
-                  const topPos = Math.random() * 40; 
-                  const speed = Math.random() * 30 + 30; 
+                  const topPos = Math.random() * 35; 
+                  const speed = Math.random() * 25 + 35; 
                   const delay = Math.random() * -60; 
-
-                  cloud.style.width = `${width}px`;
-                  cloud.style.height = `${height}px`;
-                  cloud.style.top = `${topPos}%`;
+                  cloud.style.width = width + "px";
+                  cloud.style.height = height + "px";
+                  cloud.style.top = topPos + "%";
                   cloud.style.opacity = Math.random() * 0.3 + 0.6;
-                  cloud.style.setProperty('--speed', `${speed}s`);
-                  cloud.style.animationDelay = `${delay}s`;
+                  cloud.style.setProperty('--speed', speed + "s");
+                  cloud.style.animationDelay = delay + "s";
                   cloudContainer.appendChild(cloud);
               }
           }
 
           const birdContainer = document.getElementById('bird-container');
           if (birdContainer) {
-              const birdCount = 12;
+              const birdCount = 10;
               for (let i = 0; i < birdCount; i++) {
                   const bird = document.createElement('div');
                   bird.classList.add('bird');
-                  
                   const wings = document.createElement('div');
                   wings.classList.add('bird-wings');
                   bird.appendChild(wings);
-
                   const direction = Math.floor(Math.random() * 2);
                   let startX, endX, flip;
-                  
-                  if (direction === 0) {
-                      startX = "105vw";
-                      endX = "-10vw";
-                      flip = "scaleX(1)"; 
-                  } else {
-                      startX = "-10vw";
-                      endX = "105vw";
-                      flip = "scaleX(-1)"; 
-                  }
-
-                  const startY = `${Math.random() * 45 + 5}%`; 
-                  const endY = `${parseFloat(startY) + (Math.random() * 20 - 10)}%`; 
-                  const speed = Math.random() * 10 + 12; 
-                  const delay = Math.random() * -20; 
-
+                  if (direction === 0) { startX = "105vw"; endX = "-10vw"; flip = "scaleX(1)"; } 
+                  else { startX = "-10vw"; endX = "105vw"; flip = "scaleX(-1)"; }
+                  const startY = Math.random() * 40 + 5 + "%"; 
+                  const endY = (parseFloat(startY) + (Math.random() * 20 - 10)) + "%"; 
+                  const speed = Math.random() * 8 + 12; 
+                  const delay = Math.random() * -25; 
                   bird.style.setProperty('--startX', startX);
                   bird.style.setProperty('--endX', endX);
                   bird.style.setProperty('--startY', startY);
                   bird.style.setProperty('--endY', endY);
                   bird.style.setProperty('--flip', flip);
-                  bird.style.setProperty('--speed', `${speed}s`);
-                  bird.style.animationDelay = `${delay}s`;
-                  
+                  bird.style.setProperty('--speed', speed + "s");
+                  bird.style.animationDelay = delay + "s";
                   birdContainer.appendChild(bird);
               }
           }
 
           const fishContainer = document.getElementById('fish-container');
           if (fishContainer) {
-              const dolphinCount = 6;
+              const dolphinCount = 6; 
               for (let i = 0; i < dolphinCount; i++) {
                   const dolphin = document.createElement('div');
                   dolphin.classList.add('dolphin');
-
-                  const startX = Math.random() * 80 + 5;
+                  const startX = Math.random() * 80 + 5; 
                   const jumpDistance = Math.random() * 8 + 6; 
                   const endX = startX + jumpDistance;
                   const midX = startX + (jumpDistance / 2); 
-
                   const jumpHeight = (Math.random() * -25 - 35) + "px"; 
-                  const speed = Math.random() * 2 + 2.5;
-                  const delay = Math.random() * 12;
-
+                  const speed = Math.random() * 2 + 2.5; 
+                  const delay = Math.random() * 12; 
                   dolphin.style.setProperty('--startX', startX + "vw");
                   dolphin.style.setProperty('--midX', midX + "vw");
                   dolphin.style.setProperty('--endX', endX + "vw");
                   dolphin.style.setProperty('--jumpHeight', jumpHeight);
                   dolphin.style.setProperty('--speed', speed + "s");
                   dolphin.style.setProperty('--delay', delay + "s");
-
                   fishContainer.appendChild(dolphin);
               }
           }
@@ -578,7 +537,7 @@
       } else {
           setupAnimeNature();
       }
-    </script>
+  </script>
 
 </body>
 </html>
